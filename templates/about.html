@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+     
+
+    <h2> {{ page_title }} </h2>
+    <p>
+        The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that
+        facilitated the posting of content by non-technical users who did not have much experience with HTML or computer
+        programming. Previously, knowledge of such technologies as HTML and File Transfer Protocol had been required to
+        publish content on the Web, and early Web users therefore tended to be hackers and computer enthusiasts. As of the
+        2010s, the majority are interactive Web 2.0 websites, allowing visitors to leave online comments, and it is this
+        interactivity that distinguishes them from other static websites. In that sense, blogging can be seen as a form
+        of social networking service. Indeed, bloggers not only produce content to post on their blogs but also often build
+        social relations with their readers and other bloggers. Blog owners or authors often moderate and filter online
+        comments to remove hate speech or other offensive content. There are also high-readership blogs which do not allow
+        comments.
+    </p>
+
+        {% for member in company %}
+
+        
+        
+
+        <div class="row featurette">
+
+
+            {% if loop.index % 2 != 0 %}
+                <div class="col-md-7">
+                <h3><a href="/about/{{ member.url }}"> {{ loop.index }} . {{ member.name }} </a></h3>
+                <p>
+                    {{ member.description }}
+                </p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+
+
+            {% else %}
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}"> {{ loop.index }} . {{ member.name }} </a></h3>
+                    <p>
+                        {{ member.description }}
+                    </p>
+                    </div>
+
+            {% endif %}
+        </div>
+        
+
+        <!--  if you don't know the length of the objects in the loop. -->         
+         {% if loop.index != loop.length %} 
+
+            <hr class="featurette-divider">
+
+        {% endif %}
+
+        {% endfor %}
+   
+
+{% endblock %}
